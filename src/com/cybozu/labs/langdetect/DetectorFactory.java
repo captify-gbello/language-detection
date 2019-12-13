@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import com.cybozu.labs.langdetect.util.NGram;
 import net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONException;
 
@@ -64,6 +65,7 @@ public class DetectorFactory {
      *                              or profile's format is wrong (error code = {@link ErrorCode#FormatError})
      */
     public static void loadProfile(File profileDirectory) throws LangDetectException {
+        System.out.println("NGams="+NGram.N_GRAM);
         File[] listFiles = profileDirectory.listFiles();
         if (listFiles == null)
             throw new LangDetectException(ErrorCode.NeedLoadProfileError, "Not found profile: " + profileDirectory);
@@ -101,7 +103,7 @@ public class DetectorFactory {
         int index = 0;
         int langsize = json_profiles.size();
         if (langsize < 2)
-            throw new LangDetectException(ErrorCode.NeedLoadProfileError, "Need more than 2 profiles");
+            throw new LangDetectException(ErrorCode.NeedLoadProfileError, "Hey! Need more than 2 profiles");
             
         for (String json: json_profiles) {
             try {
@@ -131,7 +133,7 @@ public class DetectorFactory {
                 instance_.wordLangProbMap.put(word, new double[langsize]);
             }
             int length = word.length();
-            if (length >= 1 && length <= 3) {
+            if (length >= 1 && length <= NGram.N_GRAM) {
                 double prob = profile.freq.get(word).doubleValue() / profile.n_words[length - 1];
                 instance_.wordLangProbMap.get(word)[index] = prob;
             }

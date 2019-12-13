@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public class NGram {
     private static final String LATIN1_EXCLUDED = Messages.getString("NGram.LATIN1_EXCLUDE");
-    public final static int N_GRAM = 3;
+    public final static int N_GRAM = Integer.parseInt(System.getProperty("ngram", "6"));
     public static HashMap<Character, Character> cjk_map; 
     
     private StringBuffer grams_;
@@ -57,7 +57,7 @@ public class NGram {
     public String get(int n) {
         if (capitalword_) return null;
         int len = grams_.length(); 
-        if (n < 1 || n > 3 || len < n) return null;
+        if (n < 1 || n > N_GRAM || len < n) return null;
         if (n == 1) {
             char ch = grams_.charAt(len - 1);
             if (ch == ' ') return null;

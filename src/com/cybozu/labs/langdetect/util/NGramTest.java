@@ -5,7 +5,7 @@ package com.cybozu.labs.langdetect.util;
 
 import static org.junit.Assert.*;
 
-import static org.hamcrest.CoreMatchers.is;
+//import static org.hamcrest.CoreMatchers.is;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class NGramTest {
      */
     @Test
     public final void testConstants() {
-        assertThat(NGram.N_GRAM, is(3));
+//        assertThat(NGram.N_GRAM, is(3));
         assertEquals(NGram.N_GRAM, 3);
     }
 

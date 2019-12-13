@@ -314,6 +314,7 @@ public class Command {
      * @param args command line arguments
      */
     public static void main(String[] args) {
+        System.out.println("NGrams=" + Integer.parseInt(System.getProperty("ngram", "3")));
         Command command = new Command();
         command.addOpt("-d", "directory", "./");
         command.addOpt("-a", "alpha", "" + DEFAULT_ALPHA);
