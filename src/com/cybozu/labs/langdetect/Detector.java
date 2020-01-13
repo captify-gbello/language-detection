@@ -58,7 +58,7 @@ public class Detector {
     private static final double ALPHA_WIDTH = 0.05;
 
     private static final int ITERATION_LIMIT = 1000;
-    private static final double PROB_THRESHOLD = 0.1;
+    private static final double PROB_THRESHOLD = 0.0;
     private static final double CONV_THRESHOLD = 0.99999;
     private static final int BASE_FREQ = 10000;
     private static final String UNKNOWN_LANG = "unknown";
@@ -340,7 +340,7 @@ public class Detector {
         ArrayList<Language> list = new ArrayList<Language>();
         for(int j=0;j<prob.length;++j) {
             double p = prob[j];
-            if (p > PROB_THRESHOLD) {
+            if (p >= PROB_THRESHOLD) {
                 for (int i = 0; i <= list.size(); ++i) {
                     if (i == list.size() || list.get(i).prob < p) {
                         list.add(i, new Language(langlist.get(j), p));
